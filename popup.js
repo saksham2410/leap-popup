@@ -51,33 +51,39 @@
     >
       <button
         class="option-btn border border-gray-400 rounded-xl py-2 px-4 text-sm font-medium text-gray-700"
-        data-value="Option 1"
+        data-value="1"
       >
-        Long Option 1
+      End-to-end Counselling
       </button>
       <button
         class="option-btn border border-gray-400 rounded-xl py-2 px-4 text-sm font-medium text-gray-700"
-        data-value="Option 2"
+        data-value="6"
       >
-        2
+      IELTS Prep
       </button>
       <button
         class="option-btn border border-gray-400 rounded-xl py-2 px-4 text-sm font-medium text-gray-700"
-        data-value="Option 3"
+        data-value="2"
       >
-        Option 3
+      University Shortlist
       </button>
       <button
         class="option-btn border border-gray-400 rounded-xl py-2 px-4 text-sm font-medium text-gray-700"
-        data-value="Option 4"
+        data-value="3"
       >
-        short 4
+      Only PR/Job
       </button>
       <button
         class="option-btn border border-gray-400 rounded-xl py-2 px-4 text-sm font-medium text-gray-700"
-        data-value="Option 5"
+        data-value="4"
       >
-        Option 5
+      Visa Assistance
+      </button>
+      <button
+        class="option-btn border border-gray-400 rounded-xl py-2 px-4 text-sm font-medium text-gray-700"
+        data-value="5"
+      >
+      SOP/LOR Assistance
       </button>
     </div>
 
@@ -321,23 +327,20 @@
       const url = new URL(window.location.href);
       const domainParts = url.hostname.split(".");
       const subdomain = domainParts.length > 1 ? domainParts[0] + "." : "";
-      console.log(subdomain,'subdomain');
+      console.log(subdomain, "subdomain");
       const body = {
         phone: helpPhoneInput.value,
         name: helpNameInput.value,
         howLeapHelp: selectedOptions.toString(),
       };
-      fetch(
-        `https://${subdomain}leapscholar.com/api/scholarRoute?path=lead`,
-        {
-          headers: {
-            "content-type": "application/json",
-            Referer: window.location.href,
-          },
-          body: JSON.stringify(body),
-          method: "POST",
-        }
-      )
+      fetch(`https://${subdomain}leapscholar.com/api/scholarRoute?path=lead`, {
+        headers: {
+          "content-type": "application/json",
+          Referer: window.location.href,
+        },
+        body: JSON.stringify(body),
+        method: "POST",
+      })
         .then(() => {
           helpStep3.classList.remove("hidden");
           helpNameInput.value = "";
@@ -347,6 +350,7 @@
           helpModal.classList.remove("bottom-20");
           helpModal.classList.add("bottom-1");
           helpBtn.classList.add("hidden");
+          localStorage.setItem("isHelpNudgeFormFiled",true);
         })
         .catch((error) => {
           console.error("Error submitting form:", error);
