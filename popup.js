@@ -320,7 +320,7 @@
     ) {
       const url = new URL(window.location.href);
       const domainParts = url.hostname.split(".");
-      const subdomain = domainParts.length > 1 ? domainParts[0] + "-" : "";
+      const subdomain = domainParts.length > 1 ? domainParts[0] + "." : "";
       console.log(subdomain,'subdomain');
       const body = {
         phone: helpPhoneInput.value,
@@ -328,7 +328,7 @@
         howLeapHelp: selectedOptions.toString(),
       };
       fetch(
-        `https://${subdomain}api.leapscholar.com/api/scholarRoute?path=lead`,
+        `https://${subdomain}leapscholar.com/api/scholarRoute?path=lead`,
         {
           headers: {
             "content-type": "application/json",
